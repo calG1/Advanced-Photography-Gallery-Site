@@ -116,11 +116,8 @@ document.addEventListener("DOMContentLoaded", () => {
     imgElement.onload = () => {
       imgElement.classList.add("loaded");
 
-      // Parse metadata AFTER image loads or while loaded to keep it non-blocking
-      // Note: Using exifr directly parses header without fetching whole file when doing it from URL,
-      // but since we are serving locally it will quickly scan it.
-      // We only request specific tags to optimize performance for 80MB files
-      exifr.parse(imagePath, {
+      // Parse metadata from the THUMBNAIL file (much faster than fetching the huge originals)
+      exifr.parse(thumbPath, {
         pick: ['Model', 'FNumber', 'FocalLength', 'FocalLengthIn35mmFormat', 'ISO', 'ExposureTime'],
         tiff: true,
         ifd0: true,
