@@ -1,0 +1,240 @@
+@font-face {
+  font-family: 'Google Sans Flex';
+  src: url('GoogleSansFlex-VariableFont_GRAD,ROND,opsz,slnt,wdth,wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --bg-color: #0d0d0d;
+  --text-primary: #f0f0f0;
+  --text-secondary: #999999;
+  --accent: #ffffff;
+  --shadow: rgba(0, 0, 0, 0.5);
+  --font-family: 'Google Sans Flex', 'Google Sans', 'Outfit', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  font-family: var(--font-family);
+  font-weight: 400;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  padding: 4rem 2rem;
+  min-height: 100vh;
+}
+
+/* Header Info */
+header {
+  max-width: 1400px;
+  margin: 0 auto 4rem auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 2rem;
+}
+
+.header-content h1 {
+  font-size: 1.5rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.25rem;
+}
+
+.header-content p {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+}
+
+.primary-link {
+  color: var(--accent);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 0.5rem 1rem;
+  border-radius: 40px;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.primary-link:hover {
+  background-color: var(--accent);
+  color: #000;
+  border-color: var(--accent);
+}
+
+/* Gallery Masonry Layout using CSS Columns */
+main {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.gallery-container {
+  column-count: 3;
+  column-gap: 3rem;
+  width: 100%;
+}
+
+@media (max-width: 1100px) {
+  .gallery-container {
+    column-count: 2;
+    column-gap: 2rem;
+  }
+}
+
+@media (max-width: 700px) {
+  .gallery-container {
+    column-count: 1;
+  }
+}
+
+/* Gallery Items */
+.gallery-item {
+  break-inside: avoid;
+  margin-bottom: 4rem;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.gallery-item:hover {
+  transform: translateY(-4px);
+}
+
+.image-wrapper {
+  overflow: hidden;
+  border-radius: 4px;
+  background-color: #1a1a1a; /* Placeholder color before load */
+  position: relative;
+}
+
+.image-wrapper img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+
+.image-wrapper img.loaded {
+  opacity: 1;
+}
+
+/* Metadata formatting aligned strictly bottom-left underneath image */
+.metadata {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  text-align: left;
+}
+
+.meta-row {
+  display: flex;
+  gap: 0.75rem;
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+/* Using tabular figures for better numbers alignment */
+.meta-value {
+  font-feature-settings: "tnum";
+  font-variant-numeric: tabular-nums;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+/* Camera Model */
+.meta-model {
+  color: var(--text-primary);
+  font-size: 0.85rem;
+  text-transform: none;
+  font-weight: 600;
+  margin-bottom: 0.2rem;
+}
+
+.location-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--text-primary);
+  opacity: 0.8;
+  text-decoration: none;
+  transition: opacity 0.2s ease, color 0.2s ease;
+}
+
+.location-tag:hover {
+  opacity: 1;
+  color: var(--accent);
+}
+
+/* Skeleton Loaders */
+.skeleton {
+  width: 200px;
+  height: 12px;
+  background-color: #222;
+  border-radius: 2px;
+  animation: pulse 1.5s infinite;
+  margin-bottom: 0.25rem;
+}
+
+/* Lightbox Overlay */
+.lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(10, 10, 10, 0.95);
+  backdrop-filter: blur(10px);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+  overflow: hidden; /* Prevent body scrolling while active */
+}
+
+.lightbox.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.lightbox img {
+  max-width: 95vw;
+  max-height: 95vh;
+  object-fit: contain;
+  cursor: zoom-out;
+  transition: transform 0.2s cubic-bezier(0.2, 0, 0.2, 1);
+  transform-origin: center;
+}
+
+/* Ensure gallery images appear clickable */
+.image-wrapper {
+  overflow: hidden;
+  border-radius: 4px;
+  background-color: #1a1a1a;
+  position: relative;
+  cursor: zoom-in;
+}

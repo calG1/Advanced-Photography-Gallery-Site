@@ -1,7 +1,42 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wonders of the Keweenaw | Cal Gilbertson</title>
+
+  <!-- Fallback font that resembles Google Sans Flex if not locally installed -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-test
+
+  <header>
+    <div class="header-content">
+      <h1>Wonders of the Keweenaw</h1>
+      <p>An interactive gallery.</p>
+      <a href="https://calgilbertson.com" class="primary-link" target="_blank"
+        rel="noopener noreferrer">calgilbertson.com</a>
+    </div>
+  </header>
+
+  <main>
+    <div class="gallery-container" id="gallery">
+      <!-- Images and tags will be injected here dynamically by script.js -->
+    </div>
+  </main>
+
+  <!-- Lightbox Overlay -->
+  <div id="lightbox" class="lightbox">
+    <img id="lightbox-img" src="" alt="Enlarged Image">
+  </div>
+
+  <script type="module" src="script.js"></script>
 </body>
+
 </html>
