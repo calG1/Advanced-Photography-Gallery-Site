@@ -84,6 +84,7 @@ document.addEventListener("DOMContentLoaded", () => {
   Object.keys(imageLocations).forEach((filename, index) => {
     const location = imageLocations[filename];
     const imagePath = `Gallery Project/${filename}`;
+    const thumbPath = `Gallery Project/thumbnails/${filename}`;
 
     // Create wrapper and image
     const itemDiv = document.createElement("figure");
@@ -98,7 +99,7 @@ document.addEventListener("DOMContentLoaded", () => {
       lightbox.classList.add("active");
     });
     const imgElement = document.createElement("img");
-    imgElement.src = imagePath;
+    imgElement.src = thumbPath;
     imgElement.alt = `Gallery Image ${index + 1}`;
 
     // Lazy loading for large images
