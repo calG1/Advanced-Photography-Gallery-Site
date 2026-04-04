@@ -47,6 +47,14 @@ const imageLocations = {
   "20260313-_DSC7960.jpg": "47.274338820449664, -88.53066191498257",
 };
 
+const featuredImages = [
+  "20250914-_DSC5226.jpg",
+  "20251011-_DSC5849.jpg",
+  "20251011-_DSC5866.jpg",
+  "20241007-_DSC9449-Enhanced-NR.jpg",
+  "20231129-_DSC0294-Enhanced-NR.jpg"
+];
+
 // Shutter Speed formatter function
 function formatShutterSpeed(time) {
   if (!time) return '';
@@ -135,8 +143,26 @@ document.addEventListener("DOMContentLoaded", () => {
             let focalLength = calcFocal !== 'N/A' ? calcFocal + 'mm' : 'N/A';
             let iso = metadata.ISO ? 'ISO ' + metadata.ISO : 'N/A';
 
+            let featuredBadge = '';
+            if (featuredImages.some(fi => filename.includes(fi) || fi.includes(filename.replace('.png', '.jpg')))) {
+              featuredBadge = `
+                <div class="museum-badge">
+                   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                     <line x1="3" y1="22" x2="21" y2="22"></line>
+                     <line x1="6" y1="18" x2="6" y2="11"></line>
+                     <line x1="10" y1="18" x2="10" y2="11"></line>
+                     <line x1="14" y1="18" x2="14" y2="11"></line>
+                     <line x1="18" y1="18" x2="18" y2="11"></line>
+                     <polygon points="12 2 20 7 4 7 12 2"></polygon>
+                   </svg>
+                   <span>Featured at Carnegie Museum</span>
+                </div>
+              `;
+            }
+
             metaDiv.innerHTML = `
               <div class="meta-model">${model}</div>
+              ${featuredBadge}
               <div class="meta-row">
                 <span class="meta-value">${fstop}</span> —
                 <span class="meta-value">${focalLength}</span> —
