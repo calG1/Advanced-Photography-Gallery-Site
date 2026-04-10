@@ -2,6 +2,10 @@ import exifr from 'https://cdn.jsdelivr.net/npm/exifr/dist/full.esm.js';
 
 // Default location mappings - the user can edit these later
 const imageLocations = {
+  "20231007_172818.jpg": "47.41517614785276, -88.29835875721737",
+  "20250323_180555.jpg": "47.13442423165928, -88.72160568011965",
+  "20250921_173422(1).jpg": "47.34388752018407, -88.45194517870614",
+  "20250921_173608(1).jpg": "47.34388752018407, -88.45194517870614",
   "20230825_193104-Enhanced-SR.jpg": "47.13663660826303, -88.57477830922298",
   "20230825_194941-Enhanced-SR.jpg": "47.135418922379486, -88.57306467459586",
   "_DSC0001-Enhanced-SR.jpg": "47.13647297897375, -88.57419366956556",
@@ -48,14 +52,16 @@ const imageLocations = {
 };
 
 const featuredImages = {
-  "20250906-_DSC4693.jpg": "Featured in Walker 40th Anniversary gallery",
-  "20250914-_DSC5226.jpg": "Featured on the cover of <i>Kupari</i>",
-  "20251011-_DSC5816.jpg": "Featured in <i>Kupari</i>",
-  "20251011-_DSC5849.jpg": "Featured at Carnegie Museum",
-  "20251011-_DSC5861.jpg": "Featured in <i>Kupari</i>",
-  "20251011-_DSC5866.jpg": "Featured in <i>Kupari</i>",
-  "20241007-_DSC9449-Enhanced-NR.jpg": "Featured at Carnegie Museum",
-  "20231129-_DSC0294-Enhanced-NR.jpg": "Featured at Carnegie Museum"
+  "20250906-_DSC4693.jpg": ["Featured in Walker 40th Anniversary gallery"],
+  "20250914-_DSC5226.jpg": ["Featured at Carnegie Museum", "Featured on the cover of <i>Kupari</i>"],
+  "20250921_173422(1).jpg": ["Featured at Carnegie Museum", "Featured in <i>Kupari</i>"],
+  "20250921_173608(1).jpg": ["Featured at Carnegie Museum", "Featured in <i>Kupari</i>"],
+  "20251011-_DSC5816.jpg": ["Featured in <i>Kupari</i>"],
+  "20251011-_DSC5849.jpg": ["Featured at Carnegie Museum"],
+  "20251011-_DSC5861.jpg": ["Featured in <i>Kupari</i>"],
+  "20251011-_DSC5866.jpg": ["Featured at Carnegie Museum", "Featured in <i>Kupari</i>"],
+  "20241007-_DSC9449-Enhanced-NR.jpg": ["Featured at Carnegie Museum"],
+  "20231129-_DSC0294-Enhanced-NR.jpg": ["Featured at Carnegie Museum"]
 };
 
 // Shutter Speed formatter function
@@ -147,14 +153,15 @@ document.addEventListener("DOMContentLoaded", () => {
             let iso = metadata.ISO ? 'ISO ' + metadata.ISO : 'N/A';
 
             let featuredBadge = '';
-            let featuredText = featuredImages[filename];
-            if (!featuredText) {
-                const matchKey = Object.keys(featuredImages).find(fi => filename.includes(fi) || fi.includes(filename.replace('.png', '.jpg')));
-                if (matchKey) featuredText = featuredImages[matchKey];
+            let featuredTextRaw = featuredImages[filename];
+            if (!featuredTextRaw) {
+              const matchKey = Object.keys(featuredImages).find(fi => filename.includes(fi) || fi.includes(filename.replace('.png', '.jpg')));
+              if (matchKey) featuredTextRaw = featuredImages[matchKey];
             }
 
-            if (featuredText) {
-              featuredBadge = `
+            if (featuredTextRaw) {
+              const tags = Array.isArray(featuredTextRaw) ? featuredTextRaw : [featuredTextRaw];
+              featuredBadge = tags.map(tag => `
                 <div class="museum-badge">
                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                      <line x1="3" y1="22" x2="21" y2="22"></line>
@@ -164,9 +171,9 @@ document.addEventListener("DOMContentLoaded", () => {
                      <line x1="18" y1="18" x2="18" y2="11"></line>
                      <polygon points="12 2 20 7 4 7 12 2"></polygon>
                    </svg>
-                   <span>${featuredText}</span>
+                   <span>${tag}</span>
                 </div>
-              `;
+              `).join('');
             }
 
             metaDiv.innerHTML = `
