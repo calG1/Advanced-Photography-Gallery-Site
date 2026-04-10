@@ -47,13 +47,16 @@ const imageLocations = {
   "20260313-_DSC7960.jpg": "47.274338820449664, -88.53066191498257",
 };
 
-const featuredImages = [
-  "20250914-_DSC5226.jpg",
-  "20251011-_DSC5849.jpg",
-  "20251011-_DSC5866.jpg",
-  "20241007-_DSC9449-Enhanced-NR.jpg",
-  "20231129-_DSC0294-Enhanced-NR.jpg"
-];
+const featuredImages = {
+  "20250906-_DSC4693.jpg": "Featured in Walker 40th Anniversary gallery",
+  "20250914-_DSC5226.jpg": "Featured on the cover of <i>Kupari</i>",
+  "20251011-_DSC5816.jpg": "Featured in <i>Kupari</i>",
+  "20251011-_DSC5849.jpg": "Featured at Carnegie Museum",
+  "20251011-_DSC5861.jpg": "Featured in <i>Kupari</i>",
+  "20251011-_DSC5866.jpg": "Featured in <i>Kupari</i>",
+  "20241007-_DSC9449-Enhanced-NR.jpg": "Featured at Carnegie Museum",
+  "20231129-_DSC0294-Enhanced-NR.jpg": "Featured at Carnegie Museum"
+};
 
 // Shutter Speed formatter function
 function formatShutterSpeed(time) {
@@ -144,7 +147,13 @@ document.addEventListener("DOMContentLoaded", () => {
             let iso = metadata.ISO ? 'ISO ' + metadata.ISO : 'N/A';
 
             let featuredBadge = '';
-            if (featuredImages.some(fi => filename.includes(fi) || fi.includes(filename.replace('.png', '.jpg')))) {
+            let featuredText = featuredImages[filename];
+            if (!featuredText) {
+                const matchKey = Object.keys(featuredImages).find(fi => filename.includes(fi) || fi.includes(filename.replace('.png', '.jpg')));
+                if (matchKey) featuredText = featuredImages[matchKey];
+            }
+
+            if (featuredText) {
               featuredBadge = `
                 <div class="museum-badge">
                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -155,7 +164,7 @@ document.addEventListener("DOMContentLoaded", () => {
                      <line x1="18" y1="18" x2="18" y2="11"></line>
                      <polygon points="12 2 20 7 4 7 12 2"></polygon>
                    </svg>
-                   <span>Featured at Carnegie Museum</span>
+                   <span>${featuredText}</span>
                 </div>
               `;
             }
