@@ -97,8 +97,21 @@ main {
 }
 
 @media (max-width: 700px) {
+  body {
+    padding: 2rem 1rem;
+  }
+
+  header {
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+  }
+
   .gallery-container {
     column-count: 1;
+  }
+
+  .gallery-item {
+    margin-bottom: 2.5rem;
   }
 }
 
@@ -177,19 +190,34 @@ main {
   align-items: center;
   gap: 0.4rem;
   font-size: 0.75rem;
-  color: #cca43b;
-  background-color: rgba(204, 164, 59, 0.1);
   padding: 0.2rem 0.6rem;
   border-radius: 4px;
   font-weight: 600;
   margin-top: 0.1rem;
   margin-bottom: 0.3rem;
-  border: 1px solid rgba(204, 164, 59, 0.2);
   width: fit-content;
 }
 
 .museum-badge svg {
   opacity: 0.9;
+}
+
+.gallery-badge {
+  color: #cca43b;
+  background-color: rgba(204, 164, 59, 0.1);
+  border: 1px solid rgba(204, 164, 59, 0.2);
+}
+
+.magazine-badge {
+  color: #4a9eff;
+  background-color: rgba(74, 158, 255, 0.1);
+  border: 1px solid rgba(74, 158, 255, 0.2);
+}
+
+.default-badge {
+  color: #a0a0a0;
+  background-color: rgba(160, 160, 160, 0.1);
+  border: 1px solid rgba(160, 160, 160, 0.2);
 }
 
 .location-tag {

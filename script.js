@@ -161,19 +161,44 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if (featuredTextRaw) {
               const tags = Array.isArray(featuredTextRaw) ? featuredTextRaw : [featuredTextRaw];
-              featuredBadge = tags.map(tag => `
-                <div class="museum-badge">
-                   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                     <line x1="3" y1="22" x2="21" y2="22"></line>
-                     <line x1="6" y1="18" x2="6" y2="11"></line>
-                     <line x1="10" y1="18" x2="10" y2="11"></line>
-                     <line x1="14" y1="18" x2="14" y2="11"></line>
-                     <line x1="18" y1="18" x2="18" y2="11"></line>
-                     <polygon points="12 2 20 7 4 7 12 2"></polygon>
-                   </svg>
+              featuredBadge = tags.map(tag => {
+                let badgeClass = 'default-badge';
+                let svgIcon = '';
+
+                let lowerTag = tag.toLowerCase();
+                if (lowerTag.includes('carnegie') || lowerTag.includes('walker')) {
+                  badgeClass = 'gallery-badge';
+                  svgIcon = `
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <line x1="3" y1="22" x2="21" y2="22"></line>
+                      <line x1="6" y1="18" x2="6" y2="11"></line>
+                      <line x1="10" y1="18" x2="10" y2="11"></line>
+                      <line x1="14" y1="18" x2="14" y2="11"></line>
+                      <line x1="18" y1="18" x2="18" y2="11"></line>
+                      <polygon points="12 2 20 7 4 7 12 2"></polygon>
+                    </svg>`;
+                } else if (lowerTag.includes('kupari')) {
+                  badgeClass = 'magazine-badge';
+                  svgIcon = `
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"></path>
+                    </svg>`;
+                } else {
+                   svgIcon = `
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <circle cx="12" cy="12" r="10"></circle>
+                      <line x1="12" y1="8" x2="12" y2="12"></line>
+                      <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                    </svg>`;
+                }
+
+                return `
+                <div class="museum-badge ${badgeClass}">
+                   ${svgIcon}
                    <span>${tag}</span>
                 </div>
-              `).join('');
+              `;
+              }).join('');
             }
 
             metaDiv.innerHTML = `
