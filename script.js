@@ -61,7 +61,8 @@ const featuredImages = {
   "20251011-_DSC5861.jpg": ["Featured in <i>Kupari</i>"],
   "20251011-_DSC5866.jpg": ["Featured at Carnegie Museum", "Featured in <i>Kupari</i>"],
   "20241007-_DSC9449-Enhanced-NR.jpg": ["Featured at Carnegie Museum"],
-  "20231129-_DSC0294-Enhanced-NR.jpg": ["Featured at Carnegie Museum"]
+  "20231129-_DSC0294-Enhanced-NR.jpg": ["Featured at Carnegie Museum"],
+  "20250323_180555.jpg": ["Featured on the cover of <a href=\"https://www.pawprintsmtu.net/index.php/home/issue/view/4\" target=\"_blank\" style=\"color: inherit; text-decoration: underline; text-underline-offset: 2px;\"><i>Paw Prints</i></a>"]
 };
 
 // Shutter Speed formatter function
@@ -194,7 +195,7 @@ document.addEventListener("DOMContentLoaded", () => {
                       <line x1="18" y1="18" x2="18" y2="11"></line>
                       <polygon points="12 2 20 7 4 7 12 2"></polygon>
                     </svg>`;
-                } else if (lowerTag.includes('kupari')) {
+                } else if (lowerTag.includes('kupari') || lowerTag.includes('paw prints')) {
                   badgeClass = 'magazine-badge';
                   svgIcon = `
                     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
