@@ -286,3 +286,39 @@ main {
   position: relative;
   cursor: zoom-in;
 }
+
+/* Footer & Utilities */
+footer {
+  margin-top: 4rem;
+  padding: 2rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-muted {
+  color: var(--text-secondary);
+}
+
+.small {
+  font-size: 0.85rem;
+}
+
+.desktop-footer {
+  display: inline;
+}
+
+.mobile-footer {
+  display: none;
+}
+
+@media (max-width: 700px) {
+  .desktop-footer {
+    display: none;
+  }
+  .mobile-footer {
+    display: inline;
+  }
+}
