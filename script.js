@@ -160,6 +160,8 @@ document.addEventListener("DOMContentLoaded", () => {
             let model = metadata.Model || 'Unknown Camera';
             if (model.includes('SM-S901U') || model.includes('sm-s901u') || model.toUpperCase().includes('SM-S901U')) {
               model = 'Samsung Galaxy S22';
+            } else if (model.toLowerCase().includes('galaxy s25+')) {
+              model = 'Samsung Galaxy S25+';
             }
             let speed = formatShutterSpeed(metadata.ExposureTime) || 'N/A';
             let fstop = metadata.FNumber ? 'ƒ/' + metadata.FNumber : 'N/A';
