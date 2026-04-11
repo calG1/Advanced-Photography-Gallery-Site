@@ -130,11 +130,26 @@ document.addEventListener("DOMContentLoaded", () => {
       <div class="meta-row skeleton" style="width: 150px"></div>
     `; // skeleton loading state
 
+    let metadataParsed = false;
+
+    imgElement.onerror = () => {
+      if (imgElement.getAttribute("src") === thumbPath) {
+        imgElement.setAttribute("src", imagePath);
+      } else {
+        metaDiv.innerHTML = `<div class="meta-model">Image Failed to Load</div>`;
+      }
+    };
+
     imgElement.onload = () => {
       imgElement.classList.add("loaded");
 
-      // Parse metadata from the THUMBNAIL file (much faster than fetching the huge originals)
-      exifr.parse(thumbPath, {
+      if (metadataParsed) return;
+      metadataParsed = true;
+
+      const exifSource = imgElement.src;
+
+      // Parse metadata from the successfully loaded image
+      exifr.parse(exifSource, {
         pick: ['Model', 'FNumber', 'FocalLength', 'FocalLengthIn35mmFormat', 'ISO', 'ExposureTime'],
         tiff: true,
         ifd0: true,
