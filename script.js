@@ -53,13 +53,13 @@ const imageLocations = {
 
 const featuredImages = {
   "20250906-_DSC4693.jpg": ["Featured in Walker 40th Anniversary gallery"],
-  "20250914-_DSC5226.jpg": ["Featured at Carnegie Museum", "Featured on the cover of <i>Kupari</i>"],
-  "20250921_173422(1).jpg": ["Featured in <i>Kupari</i>"],
-  "20250921_173608(1).jpg": ["Featured in <i>Kupari</i>"],
-  "20251011-_DSC5816.jpg": ["Featured in <i>Kupari</i>"],
+  "20250914-_DSC5226.jpg": ["Featured at Carnegie Museum", "Featured on the cover of <a href=\"https://pawprintsmtu.net/index.php/kupari/issue/view/5\" target=\"_blank\" style=\"color: inherit; text-decoration: underline; text-underline-offset: 2px;\"><i>Kupari</i></a>"],
+  "20250921_173422(1).jpg": ["Featured in <a href=\"https://pawprintsmtu.net/index.php/kupari/issue/view/5\" target=\"_blank\" style=\"color: inherit; text-decoration: underline; text-underline-offset: 2px;\"><i>Kupari</i></a>"],
+  "20250921_173608(1).jpg": ["Featured in <a href=\"https://pawprintsmtu.net/index.php/kupari/issue/view/5\" target=\"_blank\" style=\"color: inherit; text-decoration: underline; text-underline-offset: 2px;\"><i>Kupari</i></a>"],
+  "20251011-_DSC5816.jpg": ["Featured in <a href=\"https://pawprintsmtu.net/index.php/kupari/issue/view/5\" target=\"_blank\" style=\"color: inherit; text-decoration: underline; text-underline-offset: 2px;\"><i>Kupari</i></a>"],
   "20251011-_DSC5849.jpg": ["Featured at Carnegie Museum"],
-  "20251011-_DSC5861.jpg": ["Featured in <i>Kupari</i>"],
-  "20251011-_DSC5866.jpg": ["Featured at Carnegie Museum", "Featured in <i>Kupari</i>"],
+  "20251011-_DSC5861.jpg": ["Featured in <a href=\"https://pawprintsmtu.net/index.php/kupari/issue/view/5\" target=\"_blank\" style=\"color: inherit; text-decoration: underline; text-underline-offset: 2px;\"><i>Kupari</i></a>"],
+  "20251011-_DSC5866.jpg": ["Featured at Carnegie Museum", "Featured in <a href=\"https://pawprintsmtu.net/index.php/kupari/issue/view/5\" target=\"_blank\" style=\"color: inherit; text-decoration: underline; text-underline-offset: 2px;\"><i>Kupari</i></a>"],
   "20241007-_DSC9449-Enhanced-NR.jpg": ["Featured at Carnegie Museum"],
   "20231129-_DSC0294-Enhanced-NR.jpg": ["Featured at Carnegie Museum"],
   "20250323_180555.jpg": ["Featured on the cover of <a href=\"https://www.pawprintsmtu.net/index.php/home/issue/view/4\" target=\"_blank\" style=\"color: inherit; text-decoration: underline; text-underline-offset: 2px;\"><i>Paw Prints</i></a>"]
