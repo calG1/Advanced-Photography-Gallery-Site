@@ -54,8 +54,8 @@ const imageLocations = {
 const featuredImages = {
   "20250906-_DSC4693.jpg": ["Featured in Walker 40th Anniversary gallery"],
   "20250914-_DSC5226.jpg": ["Featured at Carnegie Museum", "Featured on the cover of <i>Kupari</i>"],
-  "20250921_173422(1).jpg": ["Featured at Carnegie Museum", "Featured in <i>Kupari</i>"],
-  "20250921_173608(1).jpg": ["Featured at Carnegie Museum", "Featured in <i>Kupari</i>"],
+  "20250921_173422(1).jpg": ["Featured in <i>Kupari</i>"],
+  "20250921_173608(1).jpg": ["Featured in <i>Kupari</i>"],
   "20251011-_DSC5816.jpg": ["Featured in <i>Kupari</i>"],
   "20251011-_DSC5849.jpg": ["Featured at Carnegie Museum"],
   "20251011-_DSC5861.jpg": ["Featured in <i>Kupari</i>"],
@@ -202,7 +202,7 @@ document.addEventListener("DOMContentLoaded", () => {
                       <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"></path>
                     </svg>`;
                 } else {
-                   svgIcon = `
+                  svgIcon = `
                     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                       <circle cx="12" cy="12" r="10"></circle>
                       <line x1="12" y1="8" x2="12" y2="12"></line>
