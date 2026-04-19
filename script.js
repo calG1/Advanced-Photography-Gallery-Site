@@ -75,6 +75,10 @@ function formatShutterSpeed(time) {
 
 // Ensure the code runs after DOM is fully ready
 document.addEventListener("DOMContentLoaded", () => {
+  const currentYear = new Date().getFullYear();
+  if (document.getElementById("year")) document.getElementById("year").textContent = currentYear;
+  if (document.getElementById("year-mobile")) document.getElementById("year-mobile").textContent = currentYear;
+
   const gallery = document.getElementById("gallery");
   const lightbox = document.getElementById("lightbox");
   const lightboxImg = document.getElementById("lightbox-img");
@@ -118,7 +122,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     const imgElement = document.createElement("img");
     imgElement.src = thumbPath;
-    imgElement.alt = `Gallery Image ${index + 1}`;
+    imgElement.alt = `Wonders of the Keweenaw Photograph - Image ${index + 1}`;
 
     // Lazy loading for large images
     imgElement.loading = "lazy";
@@ -252,4 +256,52 @@ document.addEventListener("DOMContentLoaded", () => {
 
     gallery.appendChild(itemDiv);
   });
+
+  // --- JSON-LD SEO Structured Data Generation ---
+  const schemaGalleryElements = Object.keys(imageLocations).map((filename, index) => {
+    const locSplit = imageLocations[filename].split(',');
+    // Attempt to parse coordinates, fallback to 0 if invalid
+    const lat = locSplit.length === 2 ? parseFloat(locSplit[0]) : 0;
+    const lng = locSplit.length === 2 ? parseFloat(locSplit[1]) : 0;
+    
+    // Construct absolute URLs if possible, otherwise rely on relative paths (though Schema prefers absolute)
+    const baseUrl = window.location.origin + window.location.pathname.replace(/index\.html$/, '');
+
+    return {
+      "@type": "ImageObject",
+      "contentUrl": `${baseUrl}Gallery Project/${filename}`,
+      "thumbnailUrl": `${baseUrl}Gallery Project/thumbnails/${filename}`,
+      "description": `Wonders of the Keweenaw Photograph - Image ${index + 1}`,
+      "name": `Gallery Image ${index + 1}`,
+      "author": {
+        "@type": "Person",
+        "name": "Cal Gilbertson"
+      },
+      "contentLocation": {
+        "@type": "Place",
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": lat,
+          "longitude": lng
+        }
+      }
+    };
+  });
+
+  const jsonLd = {
+    "@context": "https://schema.org/",
+    "@type": "ImageGallery",
+    "name": "Wonders of the Keweenaw",
+    "description": "An interactive gallery of photographs from the Keweenaw Peninsula.",
+    "author": {
+      "@type": "Person",
+      "name": "Cal Gilbertson"
+    },
+    "image": schemaGalleryElements
+  };
+
+  const scriptTag = document.createElement('script');
+  scriptTag.type = 'application/ld+json';
+  scriptTag.text = JSON.stringify(jsonLd, null, 2);
+  document.head.appendChild(scriptTag);
 });
